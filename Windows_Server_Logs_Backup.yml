@@ -3,8 +3,8 @@
   hosts: all
   gather_facts: no
   vars:
-    src_folder: "C:\Program Files (x86)\Site24x7\WinAgent\monitoring\logs"      # Replace with your source folder
-    dest_folder: "D:\Site24x7_logs\Logs"                                        # Replace with your destination folder
+    src_folder: "C:\\Program Files (x86)\\Site24x7\\WinAgent\\monitoring\\logs"      # Replace with your source folder
+    dest_folder: "D:\\Site24x7_logs\\Logs"                                        # Replace with your destination folder
 
   tasks:
     - name: Ensure destination folder exists
