@@ -1,28 +1,9 @@
 ---
-- name: Copy a folder on Windows (as zip backup)
-  hosts: all
-  gather_facts: no
-  vars:
-    src_folder: "C:\\Program Files (x86)\\Site24x7\\WinAgent\\monitoring\\logs"
-    dest_folder: "D:\\Site24x7_logs\\Logs"
-    timestamp: "{{ lookup('pipe', 'powershell -Command \"Get-Date -Format yyyyMMdd_HHmmss\"') }}"
-    zip_file: "{{ dest_folder }}\\logs_backup_{{ timestamp }}.zip"
-
+- name: Copy a folder on Windows
+  hosts: 10.1.0.62
   tasks:
-    - name: Ensure destination folder exists
-      ansible.windows.win_file:
-        path: "{{ dest_folder }}"
-        state: directory
-
-    - name: Zip logs folder (skips locked files)
-      ansible.windows.win_archive:
-        path: "{{ src_folder }}"
-        dest: "{{ zip_file }}"
-        recurse: yes
-        force_archive: yes
-        ignore_errors: yes
-
-    - name: Confirm zip file created
-      ansible.windows.win_shell: |
-        if (Test-Path "{{ zip_file }}") { Write-Output "Zip exists" } else { Write-Output "Zip not found" }
-      register: zip_check
+    - name: Copy directory
+      ansible.windows.win_copy:
+        src: C:\\Program Files (x86)\\Site24x7\\WinAgent\\monitoring\\logs
+        dest: D:\\Site24x7_logs\\Logs
+        remote_src: yes
