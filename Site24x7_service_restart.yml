@@ -24,4 +24,4 @@
 
     - name: Display final status
       debug:
-        msg: "Service {{ service_name }} is now {{ final_status.status[0].status }}"
+        msg: "Service {{ service_name }} is now {{ final_status.services[0].state }}"
