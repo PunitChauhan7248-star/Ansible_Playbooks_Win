@@ -1,0 +1,28 @@
+---
+- name: Copy a folder on Windows
+  hosts: windows
+  gather_facts: no
+  vars:
+    src_folder: "C:\Program Files (x86)\Site24x7\WinAgent\monitoring\logs"      # Replace with your source folder
+    dest_folder: "D:\Site24x7_logs\Logs"                                        # Replace with your destination folder
+
+  tasks:
+    - name: Ensure destination folder exists
+      ansible.windows.win_file:
+        path: "{{ dest_folder }}"
+        state: directory
+
+    - name: Copy folder contents
+      ansible.windows.win_copy:
+        src: "{{ src_folder }}\\"
+        dest: "{{ dest_folder }}"
+        recurse: yes
+
+    - name: Confirm files copied
+      ansible.windows.win_shell: |
+        dir "{{ dest_folder }}" /b
+      register: copied_files
+
+    - name: Show copied files
+      debug:
+        msg: "{{ copied_files.stdout_lines }}"
