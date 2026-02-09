@@ -1,6 +1,6 @@
 ---
 - name: Copy a folder on Windows
-  hosts: 10.1.0.62
+  hosts: all
   gather_facts: no
   vars:
     src_folder: "C:\Program Files (x86)\Site24x7\WinAgent\monitoring\logs"      # Replace with your source folder
