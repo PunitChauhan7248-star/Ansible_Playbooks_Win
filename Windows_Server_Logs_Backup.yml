@@ -26,7 +26,3 @@
       ansible.windows.win_shell: |
         if (Test-Path "{{ zip_file }}") { Write-Output "Zip exists" } else { Write-Output "Zip not found" }
       register: zip_check
-
-    - name: Show zip creation status
-      debug:
-        msg: "{{ zip_check.stdout }}"
