@@ -17,7 +17,8 @@
         src: "{{ src_folder }}\\"
         dest: "{{ dest_folder }}"
         recurse: yes
-
+        remote_src: yes
+        
     - name: Confirm files copied
       ansible.windows.win_shell: |
         dir "{{ dest_folder }}" /b
