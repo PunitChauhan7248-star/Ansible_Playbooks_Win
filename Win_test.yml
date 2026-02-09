@@ -1,5 +1,5 @@
 - name: Create a test file on Windows
-  hosts: windows
+  hosts: 10.1.0.62
   gather_facts: no
 
   tasks:
