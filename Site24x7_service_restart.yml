@@ -15,7 +15,7 @@
       ansible.windows.win_service:
         name: "{{ service_name }}"
         state: restarted
-      when: service_info.status[0].state != "running"
+      when: service_info.services[0].state != "running"
 
     - name: Confirm service is running
       ansible.windows.win_service_info:
