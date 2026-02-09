@@ -1,0 +1,27 @@
+---
+- name: Ensure a Windows service is running
+  hosts: 10.1.0.62
+  gather_facts: no
+  vars:
+    service_name: "Site24x7 Windows Agent"
+
+  tasks:
+    - name: Check the status of the service
+      win_service_info:
+        name: "{{ service_name }}"
+      register: service_info
+
+    - name: Restart the service if it is stopped
+      win_service:
+        name: "{{ service_name }}"
+        state: restarted
+      when: service_info.status[0].status != "running"
+
+    - name: Confirm service is running
+      win_service_info:
+        name: "{{ service_name }}"
+      register: final_status
+
+    - name: Display final status
+      debug:
+        msg: "Service {{ service_name }} is now {{ final_status.status[0].status }}"
