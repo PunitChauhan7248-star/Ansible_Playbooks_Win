@@ -1,9 +1,9 @@
 ---
-- name: Copy a folder on Windows
-  hosts: 10.1.0.62
+- name: Copy Site24x7 logs on Windows
+  hosts: windows
   tasks:
-    - name: Copy directory
-      ansible.windows.win_copy:
-        src: C:\\Program Files (x86)\\Site24x7\\WinAgent\\monitoring\\logs
-        dest: D:\\Site24x7_logs\\Logs
-        remote_src: yes
+    - name: Copy logs using robocopy
+      ansible.windows.win_robocopy:
+        src: 'C:\Program Files (x86)\Site24x7\WinAgent\monitoring\logs'
+        dest: 'D:\Site24x7_logs\Logs'
+        flags: /E /R:2 /W:2
