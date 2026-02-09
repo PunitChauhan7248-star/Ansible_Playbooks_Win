@@ -3,7 +3,7 @@
   hosts: 10.1.0.62
   gather_facts: no
   vars:
-    service_name: "Spooler"  # Replace with your service name
+    service_name: "Site24x7 Windows Agent"  # Replace with your service name
 
   tasks:
     - name: Check the status of the service
