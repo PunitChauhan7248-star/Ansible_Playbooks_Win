@@ -1,0 +1,14 @@
+---
+- name: Move Site24x7 logs on Windows
+  hosts: 10.1.0.62
+  gather_facts: no
+
+  tasks:
+    - name: Move logs using robocopy
+      win_command: >
+        robocopy
+        "C:\Program Files (x86)\Site24x7\WinAgent\monitoring\logs"
+        "D:\Site24x7_logs\Logs"
+        /E /MOVE /R:2 /W:2
+      register: robocopy_result
+      failed_when: robocopy_result.rc >= 8
