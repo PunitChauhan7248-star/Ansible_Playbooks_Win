@@ -1,6 +1,6 @@
 ---
 - name: Install packages on Linux
-  hosts: 10.1.0.37
+  hosts: localhost
   become: yes
 
   tasks:
